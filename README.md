@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Weiser Campus Server
 
 ## About
@@ -54,6 +53,3 @@ __0.1.0__
 Copyright (c) 2016
 
 Licensed under the [MIT license](LICENSE).
-=======
-# WeiserCampus-Server
->>>>>>> 6b06a8b67e8ebe7cd8cd52f82873527ffa08cdf3
