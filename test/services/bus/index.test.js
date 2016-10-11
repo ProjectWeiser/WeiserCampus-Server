@@ -4,7 +4,7 @@ const assert = require('assert');
 const app = require('../../../src/app');
 
 describe('bus service', function() {
-  it('registered the buses service', () => {
-    assert.ok(app.service('buses'));
+  it('registered the bus service', () => {
+    assert.ok(app.service('/api/bus'));
   });
 });

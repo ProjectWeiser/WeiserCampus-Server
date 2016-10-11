@@ -1,10 +1,14 @@
 'use strict'
 
 const fetch = require('node-fetch');
-const schedule = require('node-schedule');
+const CronJob = require('cron').CronJob;
+const utils = require('../services/bus/utils');
 
-module.exports = function (app) {
-  const task = schedule.scheduleJob('*/1 * * * *', () => {
+module.exports = function () {
+  const app = this;
+  const bus = app.service('/api/bus');
+
+  const task = new CronJob('*/5 * * * * *', () => {
     const opts = {
       method: 'POST',
       credentials: 'include',
@@ -18,11 +22,16 @@ module.exports = function (app) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        // Process data and store
-        // This should trigger a socket event for
-        // all clients watching the bus data type
+        const result = utils.process(data);
+
+        bus.create({ data: result })
+          .then(function (response) {
+            // This should trigger a socket event for
+            // all clients watching the bus data type
+          })
+          .catch(function (err) {});
       });
   });
-  
+
+  task.start();
 };

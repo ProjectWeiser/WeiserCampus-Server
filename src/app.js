@@ -14,6 +14,7 @@ const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
 const task = require('./utils/task');
+const clear = require('./utils/clear');
 
 const app = feathers();
 
@@ -31,6 +32,7 @@ app.use(compress())
   .configure(socketio())
   .configure(services)
   .configure(middleware)
-  .configure(task);
+  .configure(task)
+  .configure(clear)
 
 module.exports = app;

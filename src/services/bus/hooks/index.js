@@ -12,10 +12,18 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [],
-  update: [],
-  patch: [],
-  remove: []
+  create: [
+    globalHooks.disableExternal(),
+  ],
+  update: [
+    hooks.disable(),
+  ],
+  patch: [
+    hooks.disable(),
+  ],
+  remove: [
+    hooks.disable(),
+  ]
 };
 
 exports.after = {
